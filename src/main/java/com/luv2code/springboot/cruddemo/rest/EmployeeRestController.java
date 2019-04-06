@@ -3,6 +3,7 @@ package com.luv2code.springboot.cruddemo.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +30,10 @@ public class EmployeeRestController {
 	
 	// expose "/employees and return list of employees
 	@GetMapping("/employees")
+	@CrossOrigin(origins = "http://localhost:8100")
 	public List<Employee> findAll() {
-		return employeeService.findAll();
+		List<Employee> employees = employeeService.findAll();
+		return employees;
 	}
 	
 	// add mapping for GET /employees/{employeeId}
